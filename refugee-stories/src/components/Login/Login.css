@@ -1,0 +1,44 @@
+form {
+  padding: 10px 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  margin: 50px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #1b4965;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 0.8rem;
+  width: 400px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: #cae9ff;
+}
+button {
+  background: #1b4965;
+  color: #cae9ff;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 400px;
+  font-weight: 600;
+  font-size: 16px;
+  outline: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+label {
+  font-size: 18px;
+  color: #1b4965;
+}

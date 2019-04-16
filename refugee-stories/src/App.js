@@ -15,17 +15,20 @@ class App extends Component {
         <div className="App">
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="https://refugee-stories.netlify.com/login">Login</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/pending-approvals">Pending Approvals</Link>
-            </li>
+            </li> */}
           </ul>
 
-          <Route path="/login" component={Login} />
+          <Route
+            path="https://refugee-stories.netlify.com/login"
+            component={Login}
+          />
           <PrivateRoute
             exact
-            path="/pending-approvals"
+            path="https://refugee-stories.netlify.com/pending-approvals"
             component={PendingApprovals}
           />
         </div>

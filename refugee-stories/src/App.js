@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Login from "./components/Login/Login";
 import PendingApprovals from "./components/PendingApprovals/PendingApprovals";
 import PrivateRoute from "./components/PrivateRoute";
-
+// import StoryList from "./components/StoryList/StoryList";
+import StoryForm from "./components/StoryForm/StoryForm";
 import "./App.css";
 
 // STEP I - Wrap everything inside Router. Add a Login route
@@ -15,14 +16,19 @@ class App extends Component {
         <div className="App">
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <NavLink exact to="/">
+                Home
+              </NavLink>
+              <NavLink exact to="/story-form">
+                Share Your Story
+              </NavLink>
+              <NavLink to="/login">Login</NavLink>
             </li>
-            {/* <li>
-              <Link to="/pending-approvals">Pending Approvals</Link>
-            </li> */}
           </ul>
 
           <Route path="/login" component={Login} />
+          {/* <Route path="/story-form" component={StoryList} /> */}
+          <Route path="/story-form" component={StoryForm} />
           <PrivateRoute
             exact
             path="/pending-approvals"

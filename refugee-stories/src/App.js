@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Login from "./components/Login/Login";
 import PendingApprovals from "./components/PendingApprovals/PendingApprovals";
 import PrivateRoute from "./components/PrivateRoute";
-// import StoryList from "./components/StoryList/StoryList";
 import StoryForm from "./components/StoryForm/StoryForm";
-import Stories from "./components/Stories/Stories";
+
 import "./App.css";
 
 // STEP I - Wrap everything inside Router. Add a Login route
@@ -20,20 +19,23 @@ class App extends Component {
               <NavLink exact to="/">
                 Home
               </NavLink>
+              {/* <NavLink
+                exact
+                to="https://refugee-stories.github.io/mylynh-nguyen-ui/"
+              >
+                Homie
+              </NavLink> */}
               <NavLink exact to="/story-form">
                 Share Your Story
               </NavLink>
-              <NavLink exact to="/stories">
-                Stories
-              </NavLink>
+
               <NavLink to="/login">Login</NavLink>
             </li>
           </ul>
 
           <Route path="/login" component={Login} />
-          {/* <Route path="/story-form" component={StoryList} /> */}
           <Route path="/story-form" component={StoryForm} />
-          <Route path="/stories" component={Stories} />
+
           <PrivateRoute
             exact
             path="/pending-approvals"

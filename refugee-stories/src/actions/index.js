@@ -1,7 +1,13 @@
 import axios from "axios";
 
 export const LOGIN_START = "LOGIN_START";
+
+export const FETCH_STORIES = "FETCH_STORIES";
+export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_ERROR = "FETCH_ERROR";
 export const ADD_STORY = "ADD_STORY";
+export const ADD_SUCCESS = "GET_SUCCESS";
+export const ADD_ERROR = "GET_ERROR";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -16,7 +22,7 @@ export const login = creds => dispatch => {
 
 export const getData = () => {
   axios
-    .get("https://refugeestories-be.herokuapp.com/api/stories", {
+    .post("https://refugeestories-be.herokuapp.com/api/stories", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -27,24 +33,37 @@ export const getData = () => {
     });
 };
 
-export const addStory = storyName => {
-  // console.log(storyName);
-  return {
-    type: ADD_STORY,
-    payload: storyName
-  };
+// //Named export
+// export const addStory = story => {
+//   // console.log(story);
+//   return {
+//     type: "ADD_STORY",
+//     payload: addStory
+//   };
+// };
+
+export const getStories = () => dispatch => {
+  // console.log("Fired!");
+  dispatch({ type: FETCH_STORIES });
+  axios
+    .get("https://refugeestories-be.herokuapp.com/api/stories/")
+    .then(res => {
+      dispatch({ type: FETCH_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: FETCH_ERROR, payload: error });
+    });
 };
 
-export const FETCH_STORY_START = "FETCH_STORY_START";
-export const FETCH_STORY_SUCCESS = "FETCH_STORY_SUCCESS";
-export const FETCH_STORY_FAIL = "FETCH_STORY_FAIL";
-
-export const getStory = () => dispatch => {
-  dispatch({ type: FETCH_STORY_START });
+export const addStory = data => dispatch => {
+  // console.log("Fired!");
+  dispatch({ type: ADD_STORY });
   axios
-    .get("https://refugeestories-be.herokuapp.com/api/stories")
-    .then(res =>
-      dispatch({ type: FETCH_STORY_SUCCESS, payload: res.data.results })
-    )
-    .catch(err => dispatch({ type: FETCH_STORY_FAIL, payload: err }));
+    .post("https://refugeestories-be.herokuapp.com/api/stories", data)
+    .then(res => {
+      dispatch({ type: ADD_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_ERROR, payload: error });
+    });
 };

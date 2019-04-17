@@ -44,26 +44,26 @@ export const getData = () => {
 
 export const getStories = () => dispatch => {
   // console.log("Fired!");
-  dispatch({ type: FETCH_STORIES });
+  dispatch({ type: "FETCH_STORIES" });
   axios
     .get("https://refugeestories-be.herokuapp.com/api/stories/")
     .then(res => {
-      dispatch({ type: FETCH_SUCCESS, payload: res.data });
+      dispatch({ type: "FETCH_SUCCESS", payload: res.data });
     })
     .catch(error => {
-      dispatch({ type: FETCH_ERROR, payload: error });
+      dispatch({ type: "FETCH_ERROR", payload: error });
     });
 };
 
 export const addStory = data => dispatch => {
   // console.log("Fired!");
-  dispatch({ type: ADD_STORY });
+  dispatch({ type: "ADD_STORY" });
   axios
     .post("https://refugeestories-be.herokuapp.com/api/stories", data)
     .then(res => {
-      dispatch({ type: ADD_SUCCESS, payload: res.data });
+      dispatch({ type: "ADD_SUCCESS", payload: res.data });
     })
     .catch(error => {
-      dispatch({ type: ADD_ERROR, payload: error });
+      dispatch({ type: "ADD_ERROR", payload: error });
     });
 };

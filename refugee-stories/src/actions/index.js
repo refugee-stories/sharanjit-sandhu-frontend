@@ -16,7 +16,7 @@ export const login = creds => dispatch => {
 
 export const getData = () => {
   axios
-    .get("ttps://refugeestories-be.herokuapp.com/api/stories", {
+    .get("https://refugeestories-be.herokuapp.com/api/stories", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {

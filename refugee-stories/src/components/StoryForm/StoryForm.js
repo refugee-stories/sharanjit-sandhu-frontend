@@ -122,7 +122,7 @@ class StoryForm extends Component {
             value={this.state.story}
             onChange={this.handleChanges}
           />
-          <button type="submit">Submit</button>
+          <button>Submit</button>
           <div className="">
             {this.props.stories.map(story => (
               <div key={story.id}>

@@ -5,6 +5,7 @@ import PendingApprovals from "./components/PendingApprovals/PendingApprovals";
 import PrivateRoute from "./components/PrivateRoute";
 // import StoryList from "./components/StoryList/StoryList";
 import StoryForm from "./components/StoryForm/StoryForm";
+import Stories from "./components/Stories/Stories";
 import "./App.css";
 
 // STEP I - Wrap everything inside Router. Add a Login route
@@ -22,6 +23,9 @@ class App extends Component {
               <NavLink exact to="/story-form">
                 Share Your Story
               </NavLink>
+              <NavLink exact to="/stories">
+                Stories
+              </NavLink>
               <NavLink to="/login">Login</NavLink>
             </li>
           </ul>
@@ -29,6 +33,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           {/* <Route path="/story-form" component={StoryList} /> */}
           <Route path="/story-form" component={StoryForm} />
+          <Route path="/stories" component={Stories} />
           <PrivateRoute
             exact
             path="/pending-approvals"

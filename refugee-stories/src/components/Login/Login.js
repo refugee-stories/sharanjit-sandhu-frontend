@@ -22,11 +22,11 @@ class Login extends React.Component {
 
   // STEP V Create the login function, it will call the action creator and
   // pass in the credendials from the form
-  login = e => {
+  login = async (e) => {
     e.preventDefault();
-    this.props.login(this.state.credentials).then(() => {
+    await this.props.login(this.state.credentials).then(() => {
       this.props.history.push("/pending-approvals");
-    });
+    })
   };
 
   render() {

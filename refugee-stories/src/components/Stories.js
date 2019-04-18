@@ -6,7 +6,7 @@ const TEXT_COLLAPSE_OPTIONS = {
   collapseText: "... show more",
   expandText: "show less",
   minHeight: 70,
-  maxHeight: 180,
+  maxHeight: 150,
   textStyle: {
     color: "white",
     fontSize: "8px"

@@ -1,0 +1,3 @@
+base = "refugee-stories/"
+publish = "refugee-stories/build/"
+command = "yarn build"

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import ReactTextCollapse from "react-text-collapse";
 
 const TEXT_COLLAPSE_OPTIONS = {
@@ -14,11 +14,8 @@ const TEXT_COLLAPSE_OPTIONS = {
 };
 
 const Protected = props => {
-  const { pending, approveStory, deleteStory,getPending } = props;
+  const { pending, approveStory, deleteStory, getPending } = props;
   console.log(pending);
-
-  
-
 
   return (
     <>

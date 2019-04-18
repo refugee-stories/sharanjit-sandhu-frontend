@@ -10,31 +10,34 @@ form {
 input[type="text"],
 input[type="password"],
 textarea[type="text"] {
-  padding: 12px 20px;
+  padding: 20px 20px;
   margin: 8px 0;
-  border: 1px solid #1b4965;
+  border: 1px solid #555;
   box-sizing: border-box;
   outline: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   width: 400px;
+  border-radius: 10px;
+  font-weight: 500;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea[type="text"]:focus {
-  background: #cae9ff;
+  background: #b6b6b6;
 }
 button {
-  background: #1b4965;
-  color: #cae9ff;
-  padding: 14px 20px;
+  background: #060606;
+  color: #ffffff;
+  padding: 20px 20px;
   margin: 8px 0;
-  border: none;
   cursor: pointer;
   width: 400px;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 1000;
+  font-size: 1rem;
   outline: none;
+  border-radius: 10px;
+  box-shadow: 0 7px #999;
 }
 
 button:hover {
@@ -43,5 +46,5 @@ button:hover {
 
 label {
   font-size: 18px;
-  color: #1b4965;
+  color: #ffffff;
 }

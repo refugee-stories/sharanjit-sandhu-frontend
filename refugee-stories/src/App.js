@@ -143,7 +143,7 @@ const App = props => {
           <NavLink
             exact
             to="/"
-            activeStyle={{ borderBottom: "2px solid #FFF" }}
+            activeStyle={{ borderTop: "2px solid #FFF" }}
           >
             Home
           </NavLink>
@@ -153,7 +153,7 @@ const App = props => {
           <NavLink
             exact
             to="/login"
-            activeStyle={{ borderBottom: "2px solid #FFF" }}
+            activeStyle={{ borderTop: "2px solid #FFF" }}
           >
             Admin
           </NavLink>

@@ -22,27 +22,22 @@ const App = props => {
       .get("https://refugeestories-be.herokuapp.com/api/stories/latest")
       .then(res => setLastest(res.data))
       .catch(err => console.log(err));
-    
+
     axios
       .get("https://refugeestories-be.herokuapp.com/api/stories/")
       .then(res => setStories(res.data))
       .catch(err => console.log(err));
   }, []);
 
-  const login = (creds) => {
+  const login = creds => {
     axios
-      .post(
-        "https://refugeestories-be.herokuapp.com/api/auth/login",
-        creds,
-        {}
-      )
+      .post("https://refugeestories-be.herokuapp.com/api/auth/login", creds, {})
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        console.log(res.data.token)
+        console.log(res.data.token);
         axios({
           method: "get",
-          url:
-            "https://refugeestories-be.herokuapp.com/api/admin/stories",
+          url: "https://refugeestories-be.herokuapp.com/api/admin/stories",
           headers: { Authorization: `${res.data.token}` }
         }).then(res => {
           setPending(res.data);
@@ -50,19 +45,20 @@ const App = props => {
         });
       })
       .catch(err => console.log(err));
-  }
-  
+  };
+
   const getPending = () => {
     axios({
       method: "get",
       url: "https://refugeestories-be.herokuapp.com/api/admin/stories",
       headers: { Authorization: `${token}` }
-    }).then(res => {
-      setPending(res.data);
-      console.log(res.data);
     })
-    .catch(err => console.log(err))
-  }
+      .then(res => {
+        setPending(res.data);
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   const deleteStory = id => {
     axios({
@@ -84,7 +80,6 @@ const App = props => {
       .then(res => getPending())
       .catch(err => console.log(err));
   };
-
 
   return (
     <Router>
@@ -109,15 +104,19 @@ const App = props => {
         <Route
           exact
           path="/pending-approvals"
-          render={props => (
-            <PendingApprovals
-              pending={pending}
-              approveStory={approveStory}
-              deleteStory={deleteStory}
-              getPending={getPending}
-              {...props}
-            />
-          )}
+          render={props =>
+            pending ? (
+              <div style={{ color: "white" }}>No pending stories...</div>
+            ) : (
+              <PendingApprovals
+                pending={pending}
+                approveStory={approveStory}
+                deleteStory={deleteStory}
+                getPending={getPending}
+                {...props}
+              />
+            )
+          }
         />
 
         <nav className="upper-nav">

@@ -20,11 +20,10 @@ class Login extends React.Component {
 
   // STEP V Create the login function, it will call the action creator and
   // pass in the credendials from the form
-  login = async (e) => {
+  login = async e => {
     e.preventDefault();
-    await this.props.login(this.state.credentials)
+    await this.props.login(this.state.credentials);
     this.props.history.push("/pending-approvals");
-  
   };
 
   render() {
@@ -32,21 +31,23 @@ class Login extends React.Component {
       <div>
         <div>
           <form onSubmit={this.login}>
-            <label>Username</label>
+            {/* <label>Username</label> */}
             <input
               type="text"
               name="email"
+              placeholder="Username"
               value={this.state.credentials.email}
               onChange={this.handleChange}
             />
-            <label>Password</label>
+            {/* <label>Password</label> */}
             <input
               type="password"
+              placeholder="Password"
               name="password"
               value={this.state.credentials.password}
               onChange={this.handleChange}
             />
-            <button>Log in</button>
+            <button>LOGIN</button>
           </form>
         </div>
       </div>
@@ -54,4 +55,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default Login;

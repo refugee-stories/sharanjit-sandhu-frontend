@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import back from "../back.png";
 import forward from "../forward.png";
 
-const LatestStories = () => {
-  const [latest, setLastest] = useState([]);
+const LatestStories = props => {
+  const { latest } = props;
+
   let [index, setCurrentIndex] = useState(0);
-  useEffect(() => {
-    axios
-      .get("https://refugeestories-be.herokuapp.com/api/stories/latest")
-      .then(res => setLastest(res.data))
-      .catch(err => console.log(err));
-  });
+
   const indexForward = () => {
     if (index === 0) {
       setCurrentIndex(1);
@@ -36,7 +31,6 @@ const LatestStories = () => {
 
   return (
     <>
-      <h1 className='header'>Latest Stories</h1>
       <div className="story-container">
         <img
           className="arrow"
@@ -53,7 +47,7 @@ const LatestStories = () => {
             return (
               <section className="story-section" key={story.id}>
                 <h1 className="story-header">{story.title}</h1>
-                <p className="story-text">{story.story}</p>
+                <p className="latest-text">{story.story}</p>
               </section>
             );
           }

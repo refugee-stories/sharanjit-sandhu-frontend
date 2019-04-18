@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { login } from "../../actions";
 import "./Login.css";
 
 class Login extends React.Component {
@@ -22,11 +20,10 @@ class Login extends React.Component {
 
   // STEP V Create the login function, it will call the action creator and
   // pass in the credendials from the form
-  login = e => {
+  login = async e => {
     e.preventDefault();
-    this.props.login(this.state.credentials).then(() => {
-      this.props.history.push("/pending-approvals");
-    });
+    await this.props.login(this.state.credentials);
+    this.props.history.push("/pending-approvals");
   };
 
   render() {
@@ -34,21 +31,23 @@ class Login extends React.Component {
       <div>
         <div>
           <form onSubmit={this.login}>
-            <label>Username</label>
+            {/* <label>Username</label> */}
             <input
               type="text"
               name="email"
+              placeholder="Username"
               value={this.state.credentials.email}
               onChange={this.handleChange}
             />
-            <label>Password</label>
+            {/* <label>Password</label> */}
             <input
               type="password"
+              placeholder="Password"
               name="password"
               value={this.state.credentials.password}
               onChange={this.handleChange}
             />
-            <button>Log in</button>
+            <button>LOGIN</button>
           </form>
         </div>
       </div>
@@ -56,7 +55,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { login }
-)(Login);
+export default Login;

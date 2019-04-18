@@ -1,5 +1,58 @@
-import React from "react";
+import React, { useEffect } from "react";
+import ReactTextCollapse from "react-text-collapse";
 
-const Protected = () => <h2>Approval List</h2>;
+const TEXT_COLLAPSE_OPTIONS = {
+  collapse: false,
+  collapseText: "... show more",
+  expandText: "show less",
+  minHeight: 70,
+  maxHeight: 180,
+  textStyle: {
+    color: "white",
+    fontSize: "8px"
+  }
+};
+
+const Protected = props => {
+  const { pending, approveStory, deleteStory, getPending } = props;
+  console.log(pending);
+
+  return (
+    <>
+      <div className="all-stories-container">
+        {pending.map(story => {
+          return (
+            <section className="pending-section" key={story.id}>
+              <h1 className="story-header">{story.title}</h1>
+              <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                <p className="story-text">{story.story}</p>
+              </ReactTextCollapse>
+              <div className="button-div">
+                <button
+                  className="pending-button"
+                  onClick={e => {
+                    e.preventDefault();
+                    approveStory(story.id, story);
+                  }}
+                >
+                  Approve
+                </button>
+                <button
+                  className="pending-button"
+                  onClick={e => {
+                    e.preventDefault();
+                    deleteStory(story.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </>
+  );
+};
 
 export default Protected;

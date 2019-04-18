@@ -8,35 +8,161 @@ html,
 body {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-ul {
-  display: flex;
-  justify-content: flex-end;
+  align-items: center;
   margin: 0;
-  padding: 25px;
+  padding: 0;
+  height: 100vh;
+  width: 800px;
+}
+nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0 2%;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: #fff;
+  background: rgba(0, 0, 0, 0.7);
 }
 
-li {
-  list-style: none;
-  margin-right: 6px;
+.lower-nav {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.upper-nav {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  justify-content: space-between;
+}
+.top-nav-div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
 }
 
 a {
   text-decoration: none;
-  padding: 16px;
-  color: #1b4965;
+  padding: 2.5%;
+  color: #fff;
   font-weight: 800;
+  font-family: "Source Sans Pro", sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 
 a:hover {
-  border-bottom: 2px solid #bee9e8;
+  opacity: 0.5;
+}
+
+.story-header {
+  color: #fff;
+  text-align: center;
+}
+
+.story-text {
+  text-align: justify;
+  color: #fff;
+  font-style: italic;
+}
+
+.story-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 5%;
+  width: 80%;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+.arrow {
+  margin: 0 5%;
+  height: 40px;
+}
+
+.header {
+  color: White;
+  font-style: italic;
+  font-family: "IM Fell English SC", serif;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.all-stories-container {
+  margin: 5% 0;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1% 5%;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+.expandable-section {
+  width: 200px;
+  margin: 0 1%;
+}
+
+.story-text {
+  text-align: justify;
+  padding: 5%;
+  font-size: 10px;
+}
+.latest-text {
+  text-align: justify;
+  color: white;
+  padding: 5%;
+  font-size: 16px;
+}
+
+h6 {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 6px;
+}
+
+.button-div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.pending-button {
+  width: 45%;
+  color: white;
+  background: none;
+  font-size: 10px;
+}
+
+.pending-button:hover {
+  opacity: 0.7;
+}
+
+.pending-section {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
 }

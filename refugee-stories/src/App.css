@@ -8,21 +8,35 @@ html,
 body {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  width: 800px;
 }
 
 ul {
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  width: 100%;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-end;
-  margin: 0;
-  padding: 25px;
+  align-items: center;
+  margin: 5% 0 0;
+  padding: 2%;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: #fff;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 li {
@@ -32,11 +46,51 @@ li {
 
 a {
   text-decoration: none;
-  padding: 16px;
-  color: #1b4965;
+  padding: 2.5%;
+  color: #FFF;
   font-weight: 800;
+  font-family: "Source Sans Pro", sans-serif;
+      text-transform: uppercase;
+	  font-weight: 300;
 }
 
-a:hover {
-  border-bottom: 2px solid #bee9e8;
+a:hover{
+  opacity: 0.5;
+}
+
+.story-header {
+  color: #FFF; 
+  text-align: center; 
+}
+
+.story-text {
+    text-align: justify;
+    color: #FFF; 
+    font-style: italic;
+}
+
+.story-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 5%;
+  width: 80%;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.arrow{
+  margin: 0 5%;
+  height: 40px;
+}
+
+.header {
+  color: #FFF;
+  font-size: 40px;
+    font-family: "Source Sans Pro", sans-serif;
+      text-transform: uppercase;
+    font-weight: 300;
+  position: absolute;
+  top: 5%;  
 }

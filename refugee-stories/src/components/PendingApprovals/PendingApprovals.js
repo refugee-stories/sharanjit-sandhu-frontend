@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
 
-const Protected = () => <h2>Approval List</h2>;
+const Protected = () => {
+return null
+}
 
 export default Protected;

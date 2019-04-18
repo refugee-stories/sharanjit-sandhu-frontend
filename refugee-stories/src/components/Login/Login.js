@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { login } from "../../actions";
 import "./Login.css";
 
 class Login extends React.Component {
@@ -24,9 +22,9 @@ class Login extends React.Component {
   // pass in the credendials from the form
   login = async (e) => {
     e.preventDefault();
-    await this.props.login(this.state.credentials).then(() => {
-      this.props.history.push("/pending-approvals");
-    })
+    await this.props.login(this.state.credentials)
+    this.props.history.push("/pending-approvals");
+  
   };
 
   render() {
@@ -56,7 +54,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { login }
-)(Login);
+export default Login

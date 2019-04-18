@@ -14,31 +14,34 @@ const TEXT_COLLAPSE_OPTIONS = {
 };
 
 const Protected = props => {
-  const { pending, approveStory, deleteStory, getPending } = props;
-  useEffect(() => {
-    getPending()
-  }, [])
+  const { pending, approveStory, deleteStory,getPending } = props;
+  console.log(pending);
+
+  
+
 
   return (
     <>
       <div className="all-stories-container">
         {pending.map(story => {
           return (
-            <section className="expandable-section">
+            <section className="pending-section" key={story.id}>
               <h1 className="story-header">{story.title}</h1>
               <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
                 <p className="story-text">{story.story}</p>
               </ReactTextCollapse>
               <div className="button-div">
                 <button
+                  className="pending-button"
                   onClick={e => {
                     e.preventDefault();
-                    approveStory(story.id);
+                    approveStory(story.id, story);
                   }}
                 >
                   Approve
                 </button>
                 <button
+                  className="pending-button"
                   onClick={e => {
                     e.preventDefault();
                     deleteStory(story.id);

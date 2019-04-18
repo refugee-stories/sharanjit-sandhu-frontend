@@ -3,20 +3,17 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Stories from "./components/Stories";
 import PendingApprovals from "./components/PendingApprovals/PendingApprovals";
-import PrivateRoute from "./components/PrivateRoute";
 import StoryForm from "./components/StoryForm/StoryForm";
 import LatestStories from "./components/LatestStories";
 import axios from "axios";
 
 import "./App.css";
-import { getStories } from "./actions";
 
 // STEP I - Wrap everything inside Router. Add a Login route
 // and a PendingApprovals route
 const App = props => {
   const [latest, setLastest] = useState([]);
   const [stories, setStories] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [pending, setPending] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -25,50 +22,70 @@ const App = props => {
       .get("https://refugeestories-be.herokuapp.com/api/stories/latest")
       .then(res => setLastest(res.data))
       .catch(err => console.log(err));
+    
     axios
       .get("https://refugeestories-be.herokuapp.com/api/stories/")
       .then(res => setStories(res.data))
       .catch(err => console.log(err));
-  });
+  }, []);
 
-  const toggleLogin = () => {
-    if (loggedIn === false) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  };
+  const login = (creds) => {
+    axios
+      .post(
+        "https://refugeestories-be.herokuapp.com/api/auth/login",
+        creds,
+        {}
+      )
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        console.log(res.data.token)
+        axios({
+          method: "get",
+          url:
+            "https://refugeestories-be.herokuapp.com/api/admin/stories",
+          headers: { Authorization: `${res.data.token}` }
+        }).then(res => {
+          setPending(res.data);
+          console.log(res.data);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+  
+  const getPending = () => {
+    axios({
+      method: "get",
+      url: "https://refugeestories-be.herokuapp.com/api/admin/stories",
+      headers: { Authorization: `${token}` }
+    }).then(res => {
+      setPending(res.data);
+      console.log(res.data);
+    })
+    .catch(err => console.log(err))
+  }
 
   const deleteStory = id => {
     axios({
       method: "delete",
-      url: `https://refugeestories-be.herokuapp.com/api/stories/reject/${id}`,
-      headers: { Authorization: `Bearer ${token}` }
+      url: `https://refugeestories-be.herokuapp.com/api/admin/stories/reject/${id}`,
+      headers: { Authorization: `${token}` }
     })
-      .then(res => console.log("success"))
+      .then(res => getPending())
       .catch(err => console.log(err));
   };
 
-  const approveStory = id => {
+  const approveStory = (id, body) => {
     axios({
       method: "post",
-      url: `https://refugeestories-be.herokuapp.com/api/stories/approve/${id}`,
-      headers: { Authorization: `Bearer ${token}` }
+      url: `https://refugeestories-be.herokuapp.com/api/admin/stories/approve/${id}`,
+      headers: { Authorization: `${token}` },
+      data: body
     })
-      .then(res => console.log(res.data.newStoryID))
+      .then(res => getPending())
       .catch(err => console.log(err));
   };
 
-  const getPending = () => {
-    console.log(localStorage.getItem('token'))
-    axios({
-      method: "get",
-      url: "https://refugeestories-be.herokuapp.com/api/admin/stories",
-      headers: { Authorization: `Bearer ${localStorage.getItem(token)}` }
-    })
-      .then(res => setPending(res.data))
-      .catch(err => console.log(err));
-  };
+
   return (
     <Router>
       <div className="App">
@@ -85,7 +102,7 @@ const App = props => {
 
         <Route
           path="/login"
-          render={props => <Login toggleLogin={toggleLogin} {...props} />}
+          render={props => <Login login={login} {...props} />}
         />
         <Route path="/story-form" component={StoryForm} />
 

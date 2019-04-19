@@ -17,7 +17,7 @@ const Protected = props => {
   const { pending, approveStory, deleteStory, getPending } = props;
   console.log(pending);
 
-  return (
+  return pending ? (
     <>
       <div className="all-stories-container">
         {pending.map(story => {
@@ -52,6 +52,10 @@ const Protected = props => {
         })}
       </div>
     </>
+  ) : (
+    <div style={{ color: "white", background: "rgba(0, 0 ,0 ,0.7)" }}>
+      No pending stories...
+    </div>
   );
 };
 

@@ -104,10 +104,7 @@ const App = props => {
         <Route
           exact
           path="/pending-approvals"
-          render={props =>
-            pending ? (
-              <div style={{ color: "white" }}>No pending stories...</div>
-            ) : (
+          render={props => (
               <PendingApprovals
                 pending={pending}
                 approveStory={approveStory}
